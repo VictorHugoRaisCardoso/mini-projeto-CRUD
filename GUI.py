@@ -13,27 +13,50 @@ class Gui(): #Esta classe é a base para a interface gráfica
     texto_email = StringVar()
     texto_CPF = StringVar()
 
-    label_nome = Label(window,
-                       text="Nome",
-                       font="C059 13",
-                       )
-    label_sobrenome = Label(window,
-                            text="Sobrenome",
-                            font="C059 13",
-                            )
-    label_email = Label(window,
-                        text="Email",
-                        font="C059 13",
-                        )
-    label_CPF = Label(window,
-                      text="CPF",
-                      font="C059 13",
-                      )
+    label_nome = Label(
+        window,
+        text="Nome",
+        font="C059 13",
+    )
+    label_sobrenome = Label(
+        window,
+        text="Sobrenome",
+        font="C059 13",
+    )
+    label_email = Label(
+        window,
+        text="Email",
+        font="C059 13",
+    )
+    label_CPF = Label(
+        window,
+        text="CPF",
+        font="C059 13",
+    )
 
-    entrada_nome = Entry(window, textvariable=texto_nome, foreground="blue", borderwidth=3)
-    entrada_sobrenome = Entry(window, textvariable=texto_sobrenome, foreground="blue", borderwidth=3)
-    entrada_email = Entry(window, textvariable=texto_email, foreground="blue", borderwidth=3)
-    entrada_CPF = Entry(window, textvariable=texto_CPF, foreground="blue", borderwidth=3)
+    entrada_nome = Entry(
+        window,
+        textvariable=texto_nome,
+        foreground="blue",
+        borderwidth=3
+    )
+    entrada_sobrenome = Entry(
+        window,
+        textvariable=texto_sobrenome,
+        foreground="blue",
+        borderwidth=3
+    )
+    entrada_email = Entry(
+        window,
+        textvariable=texto_email,
+        foreground="blue",
+        borderwidth=3
+    )
+    entrada_CPF = Entry(window,
+        textvariable=texto_CPF,
+        foreground="blue",
+        borderwidth=3
+    )
 
     lista_de_clientes = Listbox(window)
 
@@ -42,42 +65,48 @@ class Gui(): #Esta classe é a base para a interface gráfica
     lista_de_clientes.configure(yscrollcommand=barra_de_rolagem.set)
     barra_de_rolagem.configure(command=lista_de_clientes.yview)
 
-    botao_ver_todos = Button(window,
-                            text="Ver Todos",
-                            background="#8419dc",
-                            foreground="white",
-                            relief=SOLID,
-                            )
-    botao_buscar = Button(window,
-                         text="Buscar",
-                         background="#8419dc",
-                         foreground="white",
-                         relief=SOLID,
-                         )
-    botao_cadastrar = Button(window,
-                            text="Cadastrar",
-                            background="#8419dc",
-                            foreground="white",
-                            relief=SOLID,
-                            )
-    botao_atualizar = Button(window,
-                            text="Atualizar Selecionados",
-                            background="#8419dc",
-                            foreground="white",
-                            relief=SOLID,
-                            )
-    botao_deletar = Button(window,
-                           text="Deletar Selecionados",
-                           background="#8419dc",
-                           foreground="white",
-                           relief=SOLID,
-                           )
-    botao_fechar = Button(window,
-                        text='Fechar',
-                        background="#8419dc",
-                        foreground="white",
-                        relief=SOLID,
-                        )
+    botao_ver_todos = Button(
+        window,
+        text="Ver Todos",
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,                      
+    )
+    botao_buscar = Button(
+        window,
+        text="Buscar",
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,
+    )
+    botao_cadastrar = Button(
+        window,
+        text="Cadastrar",
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,
+    )
+    botao_atualizar = Button(
+        window,
+        text="Atualizar Selecionados",
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,
+    )
+    botao_deletar = Button(
+        window,
+        text="Deletar Selecionados",
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,
+    )
+    botao_fechar = Button(
+        window,
+        text='Fechar',
+        background="#8419dc",
+        foreground="white",
+        relief=SOLID,
+    )
 
     label_nome.grid(row=0, column=0)
     label_sobrenome.grid(row=1, column=0)

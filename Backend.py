@@ -1,42 +1,42 @@
 import sqlite3 as sql
 
-class TransactionObjetct():
+class TransactionObject():
     database = "cliente.db"
     conn = None
     cursor = None
     connected = False
 
     def connect(self):
-        TransactionObjetct.conn = sql.connect(TransactionObjetct.database)
-        TransactionObjetct.cursor = TransactionObjetct.conn.cursor()
-        TransactionObjetct.connected = True
+        TransactionObject.conn = sql.connect(TransactionObject.database)
+        TransactionObject.cursor = TransactionObject.conn.cursor()
+        TransactionObject.connected = True
 
     def disconnect(self):
-        TransactionObjetct.conn.close()
-        TransactionObjetct.connected = False
+        TransactionObject.conn.close()
+        TransactionObject.connected = False
 
     def execute(self, sql, params = None):
-        if TransactionObjetct.connected:
+        if TransactionObject.connected:
             if params == None:
-                TransactionObjetct.cursor.execute(sql)
+                TransactionObject.cursor.execute(sql)
             else:
-                TransactionObjetct.cursor.execute(sql, params)
+                TransactionObject.cursor.execute(sql, params)
             return True
         else:
             return False
         
     def fetchall(self):
-        return TransactionObjetct.cursor.fetchall()
+        return TransactionObject.cursor.fetchall()
     
     def persist(self):
-        if TransactionObjetct.connected:
-            TransactionObjetct.conn.commit()
+        if TransactionObject.connected:
+            TransactionObject.conn.commit()
             return True
         else:
             return False
     
 def initDB():
-    trans = TransactionObjetct()
+    trans = TransactionObject()
     trans.connect()
     trans.execute("CREATE TABLE IF NOT EXISTS clientes (id INTEGER PRIMARY KEY, nome TEXT, sobrenome TEXT, email TEXT, cpf TEXT)")
     trans.persist()
@@ -45,7 +45,7 @@ def initDB():
 initDB()
 
 def view():
-    trans = TransactionObjetct()
+    trans = TransactionObject()
     trans.connect()
 
     trans.execute("SELECT * FROM clientes")
@@ -55,10 +55,30 @@ def view():
     return rows
 
 def insert(nome, sobrenome, email, cpf):
-    trans = TransactionObjetct()
+    trans = TransactionObject()
     trans.connect()
     trans.execute("INSERT INTO clientes VALUES(NULL, ?, ?, ?, ?)", (nome, sobrenome, email, cpf))
     trans.persist()
     trans.disconnect()
 
-    
+def search(nome="", sobrenome="", email="", cpf=""):
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("SELECT * FROM clientes WHERE nome=? or sobrenome=? or email=? or cpf=?", (nome,sobrenome,email, cpf))
+    rows = trans.fetchall()
+    trans.disconnect()
+    return rows
+
+def update(id, nome, sobrenome, email, cpf):
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("UPDATE clientes SET nome =?, sobrenome=?, email=?, cpf=? WHERE id = ?",(nome, sobrenome,email, cpf, id))
+    trans.persist()
+    trans.disconnect()
+
+def delete(id):
+    trans = TransactionObject()
+    trans.connect()
+    trans.execute("DELETE FROM clientes WHERE id = ?", (id,))
+    trans.persist()
+    trans.disconnect()

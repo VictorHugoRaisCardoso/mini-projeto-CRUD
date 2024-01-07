@@ -5,13 +5,6 @@ import Backend as core
 app = None
 app = Gui()
 
-app.btnViewAll.configure(command=view_command)
-app.btnBuscar.configure(command=search_command)
-app.btnInserir.configure(command=insert_command)
-app.btnUpdate.configure(command=update_command)
-app.btnDel.configure(command=del_command)
-app.btnClose.configure(command=app.window.destroy)
-
 def view_command():
     rows = core.view()
     app.listClientes.delete(0, END)
@@ -52,7 +45,12 @@ def del_command():
     core.delete(id)
     view_command()
 
-
+app.btnViewAll.configure(command=view_command)
+app.btnBuscar.configure(command=search_command)
+app.btnInserir.configure(command=insert_command)
+app.btnUpdate.configure(command=update_command)
+app.btnDel.configure(command=del_command)
+app.btnClose.configure(command=app.window.destroy)
 
 if __name__ == "__main__":
     app.run()

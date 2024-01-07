@@ -7,126 +7,53 @@ class Gui(): #Esta classe é a base para a interface gráfica
     def run(self):
         Gui.window.mainloop()
 
+    txtNome         = StringVar()
+    txtSobrenome    = StringVar()
+    txtEmail        = StringVar()
+    txtCPF          = StringVar()
 
-    texto_nome = StringVar()
-    texto_sobrenome = StringVar()
-    texto_email = StringVar()
-    texto_CPF = StringVar()
+    lblnome        = Label(window, text="Nome", font="C059 13")
+    lblsobrenome   = Label(window, text="Sobrenome", font="C059 13")
+    lblemail       = Label(window, text="Email", font="C059 13")
+    lblcpf         = Label(window, text="CPF", font="C059 13")
 
-    label_nome = Label(
-        window,
-        text="Nome",
-        font="C059 13",
-    )
-    label_sobrenome = Label(
-        window,
-        text="Sobrenome",
-        font="C059 13",
-    )
-    label_email = Label(
-        window,
-        text="Email",
-        font="C059 13",
-    )
-    label_CPF = Label(
-        window,
-        text="CPF",
-        font="C059 13",
-    )
+    entNome        = Entry(window, textvariable=txtNome)
+    entSobrenome   = Entry(window, textvariable=txtSobrenome)
+    entEmail       = Entry(window, textvariable=txtEmail)
+    entCPF         = Entry(window, textvariable=txtCPF)
 
-    entrada_nome = Entry(
-        window,
-        textvariable=texto_nome,
-        foreground="blue",
-        borderwidth=3
-    )
-    entrada_sobrenome = Entry(
-        window,
-        textvariable=texto_sobrenome,
-        foreground="blue",
-        borderwidth=3
-    )
-    entrada_email = Entry(
-        window,
-        textvariable=texto_email,
-        foreground="blue",
-        borderwidth=3
-    )
-    entrada_CPF = Entry(window,
-        textvariable=texto_CPF,
-        foreground="blue",
-        borderwidth=3
-    )
+    listClientes   = Listbox(window)
+    scrollClientes = Scrollbar(window)
 
-    lista_de_clientes = Listbox(window)
+    listClientes.configure(yscrollcommand=scrollClientes.set)
+    scrollClientes.configure(command=listClientes.yview)
 
-    barra_de_rolagem = Scrollbar(window)
+    btnViewAll     = Button(window, text="Ver todos", background="#8419dc", foreground="white", relief=SOLID)
+    btnBuscar      = Button(window, text="Buscar", background="#8419dc", foreground="white", relief=SOLID)
+    btnInserir     = Button(window, text="Inserir", background="#8419dc", foreground="white", relief=SOLID)
+    btnUpdate      = Button(window, text="Atualizar Selecionados", background="#8419dc", foreground="white", relief=SOLID)
+    btnDel         = Button(window, text="Deletar Selecionados", background="#8419dc", foreground="white", relief=SOLID)
+    btnClose       = Button(window, text="Fechar", background="#8419dc", foreground="white", relief=SOLID)
 
-    lista_de_clientes.configure(yscrollcommand=barra_de_rolagem.set)
-    barra_de_rolagem.configure(command=lista_de_clientes.yview)
+    lblnome.grid(row=0,column=0)
+    lblsobrenome.grid(row=1,column=0)
+    lblemail.grid(row=2,column=0)
+    lblcpf.grid(row=3, column=0)
 
-    botao_ver_todos = Button(
-        window,
-        text="Ver Todos",
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,                      
-    )
-    botao_buscar = Button(
-        window,
-        text="Buscar",
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,
-    )
-    botao_cadastrar = Button(
-        window,
-        text="Cadastrar",
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,
-    )
-    botao_atualizar = Button(
-        window,
-        text="Atualizar Selecionados",
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,
-    )
-    botao_deletar = Button(
-        window,
-        text="Deletar Selecionados",
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,
-    )
-    botao_fechar = Button(
-        window,
-        text='Fechar',
-        background="#8419dc",
-        foreground="white",
-        relief=SOLID,
-    )
+    entNome.grid(row=0, column=1, padx=50, pady=50)
+    entSobrenome.grid(row=1, column=1)
+    entEmail.grid(row=2, column=1)
+    entCPF.grid(row=3, column=1)
 
-    label_nome.grid(row=0, column=0)
-    label_sobrenome.grid(row=1, column=0)
-    label_email.grid(row=2, column=0)
-    label_CPF.grid(row=3, column=0)
+    listClientes.grid(row=0, column=2, rowspan=10)
+    scrollClientes.grid(row=0, column=6, rowspan=10)
 
-    entrada_nome.grid(row=0, column=1)
-    entrada_sobrenome.grid(row=1, column=1)
-    entrada_email.grid(row=2, column=1)
-    entrada_CPF.grid(row=3, column=1)
-
-    lista_de_clientes.grid(row=0, column=2, rowspan=10)
-    barra_de_rolagem.grid(row=0, column=6, rowspan=10)
-
-    botao_ver_todos.grid(row=4, column=0, columnspan=2)
-    botao_buscar.grid(row=5, column=0, columnspan=2)
-    botao_cadastrar.grid(row=6, column=0, columnspan=2)
-    botao_atualizar.grid(row=7, column=0, columnspan=2)
-    botao_deletar.grid(row=8, column=0, columnspan=2)
-    botao_fechar.grid(row=9, column=0, columnspan=2)
+    btnViewAll.grid(row=4, column=0, columnspan=2)
+    btnBuscar.grid(row=5, column=0, columnspan=2)
+    btnInserir.grid(row=6, column=0, columnspan=2)
+    btnUpdate.grid(row=7, column=0, columnspan=2)
+    btnDel.grid(row=8, column=0, columnspan=2)
+    btnClose.grid(row=9, column=0, columnspan=2)
 
     x_pad = 5
     y_pad = 3
